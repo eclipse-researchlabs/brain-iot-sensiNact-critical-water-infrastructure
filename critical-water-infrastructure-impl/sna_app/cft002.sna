@@ -1,0 +1,8 @@
+resource cft002_anomaly = [local/CFT002/values/anomaly]
+resource cfv006_open = [local/CFV006/values/open_complete]
+
+on cft002_anomaly.subscribe()
+
+if cft002_anomaly.get() == true do
+	cfv006_open.act(),cft002_anomaly.set("value",false)
+end if

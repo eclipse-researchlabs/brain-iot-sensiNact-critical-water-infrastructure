@@ -1,0 +1,8 @@
+resource eft001_anomaly = [local/EFT001/values/anomaly]
+resource efv010_open = [local/EFV010/values/open_complete]
+
+on eft001_anomaly.subscribe()
+
+if eft001_anomaly.get() == true do
+	efv010_open.act(),eft001_anomaly.set("value",false)
+end if

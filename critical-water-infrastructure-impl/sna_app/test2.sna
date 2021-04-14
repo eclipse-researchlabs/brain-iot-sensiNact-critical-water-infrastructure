@@ -1,0 +1,8 @@
+resource dft001_anomaly = [local/DFT001/values/anomaly]
+resource tfv001_close = [local/TFV001/values/close_complete]
+
+on dft001_anomaly.subscribe()
+
+if dft001_anomaly.get() == true do
+	tfv001_close.act(),dft001_anomaly.set("value",false)
+end if

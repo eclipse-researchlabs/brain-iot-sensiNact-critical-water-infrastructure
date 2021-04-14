@@ -1,0 +1,577 @@
+<!-- 
+ * Copyright (c) 2020-2021 Kentyou.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Kentyou - initial API and implementation
+-->
+<resourceInfos xmlns="http://org.eclipse.sensinact/resource" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://org.eclipse.sensinact/resource /home/christophe/workspace-200328-bnd/brain/org.eclipse.sensinact.gateway/platform/sensinact-generic/src/main/resources/sensinact-resource.xsd">
+
+	<policies>
+		<policy name="PROPERTY" update="NONE"></policy>
+		<policy name="STATE_VARIABLE" update="AUTO"></policy>
+		<policy name="ACTION" update="AUTO"></policy>
+	</policies>
+	
+	<!-- anomally -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="anomaly" target="values" profile="1_23,1_25,1_40,1_71">
+		<identifier xsi:type="stringContent">anomaly</identifier>
+		<policy name="PROPERTY" update="AUTO"></policy>
+		<attributes>
+			<attribute name="value" type="boolean" modifiable="MODIFIABLE"></attribute>
+		</attributes>
+	</resourceInfo>
+	
+	<!-- open -->
+	<resourceInfo xsi:type="resourceInfoAction" name="dim" target="values"
+	 profile="1_10,1_12,1_20,1_22,1_24,1_28,1_32,1_33,1_37,1_38,1_54,1_55,1_56,1_59,1_60,1_62,1_73,1_74,1_75,1_76,1_77,1_78,1_79,1_81,1_82,1_84,1_166,1_169,1_170,1_171,1_172,1_177,1_188">
+		<policy name="ACTION" update="AUTO">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaAction</classname>
+		</policy>		
+		<identifier xsi:type="stringContent">dim</identifier>
+		<methods>
+			<method type="ACT">
+				<parameter name="apertura" type="double"></parameter>
+				<references>
+					<reference xsi:type="copyReference" passOn="true" reference="apertura" policy="STATE_VARIABLE">
+						<builder type="PARAMETER">
+							<argument type="int">
+								<value>0</value>
+							</argument>
+						</builder>
+					</reference>
+				</references>
+			</method>
+		</methods>
+	</resourceInfo>
+	
+	<!-- open complete-->
+	<resourceInfo xsi:type="resourceInfoAction" name="open_complete" target="values"
+	 profile="1_10,1_12,1_20,1_22,1_24,1_28,1_32,1_33,1_37,1_38,1_54,1_55,1_56,1_59,1_60,1_62,1_73,1_74,1_75,1_76,1_77,1_78,1_79,1_81,1_82,1_84,1_166,1_169,1_170,1_171,1_172,1_177,1_188">
+		<policy name="ACTION" update="AUTO">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaAction</classname>
+		</policy>	
+		<identifier xsi:type="stringContent">open_complete</identifier>
+		<methods>
+			<method type="ACT">
+				<references>
+					<reference xsi:type="constantReference" passOn="true" reference="apertura" policy="STATE_VARIABLE">
+						<builder type="EMPTY">
+							<argument type="double">
+								<value>100</value>
+							</argument>
+						</builder>
+					</reference>
+				</references>
+			</method>
+		</methods>
+	</resourceInfo>
+	
+	<!-- close complete-->
+	<resourceInfo xsi:type="resourceInfoAction" name="close_complete" target="values"
+	 profile="1_10,1_12,1_20,1_22,1_24,1_28,1_32,1_33,1_37,1_38,1_54,1_55,1_56,1_59,1_60,1_62,1_73,1_74,1_75,1_76,1_77,1_78,1_79,1_81,1_82,1_84,1_166,1_169,1_170,1_171,1_172,1_177,1_188">
+		<policy name="ACTION" update="AUTO">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaAction</classname>
+		</policy>	
+		<identifier xsi:type="stringContent">close_complete</identifier>
+		<methods>
+			<method type="ACT">
+				<references>
+					<reference xsi:type="constantReference" passOn="true" reference="apertura" policy="STATE_VARIABLE">
+						<builder type="EMPTY">
+							<argument type="double">
+								<value>0</value>
+							</argument>
+						</builder>
+					</reference>
+				</references>
+			</method>
+		</methods>
+	</resourceInfo>
+	
+	<!-- history -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="history" target="values">
+		<identifier xsi:type="stringContent">history</identifier>
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaHistoryResource</classname>
+		</policy>
+		<attributes>
+			<attribute name="value" type="string" modifiable="UPDATABLE"></attribute>
+			<attribute name="from" type="long" modifiable="MODIFIABLE"></attribute>
+			<attribute name="to" type="long" modifiable="MODIFIABLE"></attribute>
+			<attribute name="fields" type="Array of java.lang.String" modifiable="MODIFIABLE"></attribute>
+			<attribute name="lock" type="boolean" modifiable="MODIFIABLE"></attribute>
+		</attributes>
+	</resourceInfo>
+
+	<!-- fecha -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="fecha" target="values">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">fecha</identifier>
+		<attributes>
+			<attribute name="value" type="long" modifiable="UPDATABLE"></attribute>
+		</attributes>
+	</resourceInfo>
+
+	<!-- all -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="all" target="values">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaAllResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">all</identifier>
+		<attributes>
+			<attribute name="value" type="Array of double" modifiable="MODIFIABLE"></attribute>
+		</attributes>
+	</resourceInfo>
+	
+	
+	<!-- Altura -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Altura" target="values" profile="1_05">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Altura</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int" modifiable="FIXED">
+				<value>0</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+	
+	<!-- Apertura -->
+	<resourceInfo xsi:type="resourceInfoVariable" name="apertura" target="values" 
+	 profile="1_10,1_12,1_20,1_22,1_24,1_28,1_32,1_33,1_37,1_38,1_54,1_55,1_56,1_59,1_60,1_62,1_73,1_74,1_75,1_76,1_77,1_78,1_79,1_81,1_82,1_84,1_166,1_169,1_170,1_171,1_172,1_177,1_188">
+		<policy name="STATE_VARIABLE" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">apertura</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="MODIFIABLE"></attribute>
+			<attribute name="index" type="int" modifiable="FIXED">
+				<value>1</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+
+	<!-- Estados para Valvula -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Valvula_Estado" target="values" 
+	profile="1_10,1_12,1_20,1_22,1_24,1_28,1_32,1_33,1_37,1_38,1_54,1_55,1_56,1_59,1_60,1_62,1_73,1_74,1_75,1_76,1_77,1_78,1_79,1_81,1_82,1_84,1_166,1_169,1_170,1_171,1_172,1_177">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Valvula_Estado</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int" modifiable="FIXED">
+				<value>0</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+	
+	<!-- Estados para Bomba -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Bomba_Estado" target="values" profile="1_06,1_07,1_08,1_36,1_61">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Bomba_Estado</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int" modifiable="FIXED">
+				<value>3</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+	
+	<!-- Horas de funcionamiento bomba desde rese -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Horas_De_Funcionamiento_Desde_Rese" target="values" profile="1_06,1_07,1_08,1_36,1_61">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Horas_De_Funcionamiento_Desde_Reset</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int" modifiable="FIXED">
+				<value>0</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+	
+	<!-- Horas totales de funcionamiento bomba -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Horas_Totales_De_Funcionamiento" target="values" profile="1_06,1_07,1_08,1_36,1_61">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Horas_Totales_De_Funcionamiento</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int" modifiable="FIXED">
+				<value>1</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+	
+	<!-- N de maniobras bomba desde reset -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Maniobras_Bomba_Desde_Reset" target="values" profile="1_06,1_07,1_08,1_36,1_61">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Maniobras_Bomba_Desde_Reset</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int" modifiable="FIXED">
+				<value>2</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+
+	<!-- Caudal -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Caudal" target="values" profile="1_05">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Caudal</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int">
+				<value>1</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>	
+	
+	<resourceInfo xsi:type="resourceInfoProperty" name="Caudal" target="values" profile="1_09">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Caudal</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int">
+				<value>0</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>	
+	
+	
+	<!-- Caudal a partir de contador -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Caudal_A_Partir_De_Contador" target="values" profile="1_25">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Caudal_A_Partir_De_Contador</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int">
+				<value>2</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+	
+	<!-- Caudal de caudalímetro -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Caudal_De_Caudalimetro" target="values" profile="1_23,1_25,1_40,1_71">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Caudal_De_Caudalimetro</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int">
+				<value>0</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+	
+	<!-- Contador de litros de agua -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Contador_De_Litros_De_Agua" target="values" profile="1_23,1_25,1_40,1_71">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Contador_De_Litros_De_Agua</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int">
+				<value>1</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+
+	<!-- Caudal Acumulado-->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Caudal_Acumulado" target="values" profile="1_09">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Caudal_Acumulado</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int">
+				<value>1</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+	
+	<!-- Caudal Diario-->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Caudal_Diario" target="values" profile="1_09">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Caudal_Diario</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int">
+				<value>2</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+
+	<!-- Caudal Mensual-->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Caudal_Mensual" target="values" profile="1_09">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Caudal_Mensual</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int">
+				<value>3</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+	
+	<!-- Nivel -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Nivel" target="values" profile="1_01,1_83,1_167,1_70">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Nivel</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int" modifiable="FIXED">
+				<value>0</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+
+	<!-- Nivel de desborde-->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Nivel_De_Desborde" target="values" profile="1_01">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Nivel_De_Desborde</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int" modifiable="FIXED">
+				<value>1</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+	
+	<!-- Valor de sonda de nivel-->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Valor_De_Sonda_De_Nivel" target="values" profile="1_33">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Valor_De_Sonda_De_Nivel</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int" modifiable="FIXED">
+				<value>0</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+	
+	<!-- Presion -->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Presion" target="values" profile="1_27,1_39,1_72">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Presion</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int" modifiable="FIXED">
+				<value>0</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+	
+	<!-- Volumen Consumo-->
+	<resourceInfo xsi:type="resourceInfoProperty" name="Volumen_Consumo" target="values" profile="1_165,1_164,1_104,1_105,1_144,1_143,1_145">
+		<policy name="PROPERTY" update="NONE">
+			<classname>org.eclipse.sensinact.gateway.brainiot.sica.SicaResource</classname>
+		</policy>
+		<identifier xsi:type="stringContent">Volumen_Consumo</identifier>
+		<attributes>
+			<attribute name="value" type="double" modifiable="UPDATABLE"></attribute>
+			<attribute name="index" type="int" modifiable="FIXED">
+				<value>0</value>
+			</attribute>
+		</attributes>
+	</resourceInfo>
+
+	<devices>
+		<device identifier="ALT001" profile="1_01"><service name="values"/></device>
+		<device identifier="ALT002" profile="1_05 "><service name="values"/></device>
+		<device identifier="BLT001" profile="1_83"><service name="values"/></device>
+		<device identifier="CLT001" profile="1_167"><service name="values"/></device>
+		<!-- <device identifier="DLT001" profile="1_33"><service name="values"/></device> -->
+		<device identifier="ELT001" profile="1_70"><service name="values"/></device>
+		<device identifier="CPT002" profile="1_27"><service name="values"/></device>
+		<device identifier="DPT001" profile="1_39"><service name="values"/></device>
+		<device identifier="EPT001" profile="1_72 "><service name="values"/></device>
+		<device identifier="BFT001" profile="1_09"><service name="values"/></device>
+		<device identifier="CFT002" profile="1_23"><service name="values"/></device>
+		<device identifier="CFT003" profile="1_25"><service name="values"/></device>
+		<device identifier="DFT001" profile="1_40"><service name="values"/></device>
+		<device identifier="EFT001" profile="1_71"><service name="values"/></device>
+		<device identifier="AB001" profile="1_06"><service name="values"/></device>
+		<device identifier="BB001" profile="1_07"><service name="values"/></device>
+		<device identifier="BB002" profile="1_08"><service name="values"/></device>
+		<device identifier="DB001" profile="1_36"><service name="values"/></device>
+		<device identifier="DB002" profile="1_61"><service name="values"/></device>
+		<device identifier="AFV001" profile="1_81"><service name="values"/></device>
+		<device identifier="AFV002" profile="1_82"><service name="values"/></device>
+		<device identifier="BFV001" profile="1_10"><service name="values"/></device>
+		<device identifier="BFV002" profile="1_12"><service name="values"/></device>
+		<device identifier="CFV001" profile="1_20"><service name="values"/></device>
+		
+		<device identifier="CFV002" profile="1_22"><service name="values"/></device>
+		<device identifier="CFV003" profile="1_24"><service name="values"/></device>
+		<device identifier="CFV004" profile="1_169"><service name="values"/></device>
+		<device identifier="CFV005" profile="1_171"><service name="values"/></device>
+		<device identifier="CFV006" profile="1_28"><service name="values"/></device>
+		<device identifier="CFV007" profile="1_172"><service name="values"/></device>
+		<device identifier="CFV008" profile="1_170"><service name="values"/></device>
+		<!-- <device identifier="CFV009" profile="1_32"><service name="values"/></device> -->
+		<device identifier="CFV010" profile="1_56"><service name="values"/></device>
+		<device identifier="CFV011" profile="1_55"><service name="values"/></device>
+		<device identifier="DFV001" profile="1_37"><service name="values"/></device>
+		<device identifier="DFV002" profile="1_38"><service name="values"/></device>
+		<device identifier="DFV003" profile="1_46"><service name="values"/></device>
+		<device identifier="DFV004" profile="1_45"><service name="values"/></device>
+		<device identifier="DFV005" profile="1_44"><service name="values"/></device>
+		<device identifier="DFV006" profile="1_47"><service name="values"/></device>
+		<device identifier="DFV007" profile="1_48"><service name="values"/></device>
+		<!-- <device identifier="DFV008" profile="1_33"><service name="values"/></device> -->
+		<!-- <device identifier="DFV009" profile="1_32"><service name="values"/></device> -->
+		
+		<!--
+		<device identifier="DFV010" profile="1_51"><service name="values"/></device>
+		<device identifier="DFV011" profile="1_50"><service name="values"/></device>
+		<device identifier="DFV012" profile="1_49"><service name="values"/></device>
+		<device identifier="DFV013" profile="1_53"><service name="values"/></device>
+		<device identifier="DFV014" profile="1_52"><service name="values"/></device>
+		-->
+		<device identifier="DFV015" profile="1_59"><service name="values"/></device>
+		<device identifier="DFV016" profile="1_60"><service name="values"/></device>
+		<device identifier="DFV017" profile="1_62"><service name="values"/></device>
+		<device identifier="DFV018" profile="1_177"><service name="values"/></device>
+		<device identifier="EFV001" profile="1_54"><service name="values"/></device>		
+		<device identifier="EFV002" profile="1_166"><service name="values"/></device>
+		<device identifier="EFV003" profile="1_73"><service name="values"/></device>
+		<device identifier="EFV004" profile="1_75"><service name="values"/></device>
+		<device identifier="EFV005" profile="1_77"><service name="values"/></device>
+		<device identifier="EFV006" profile="1_76"><service name="values"/></device>
+		<device identifier="EFV007" profile="1_74"><service name="values"/></device>
+		<device identifier="EFV008" profile="1_78"><service name="values"/></device>
+		<device identifier="EFV009" profile="1_79"><service name="values"/></device>
+		<device identifier="EFV010" profile="1_84"><service name="values"/></device>
+		<!--		
+		<device identifier="CAT003" profile="1_63"><service name="values"/></device>
+		<device identifier="DAT003" profile="1_64"><service name="values"/></device>
+		<device identifier="EAT003" profile="1_67"><service name="values"/></device>
+		<device identifier="BFT002" profile="1_11"><service name="values"/></device>
+		<device identifier="CFT004" profile="1_86"><service name="values"/></device>
+		<device identifier="CFT005" profile="1_87"><service name="values"/></device>
+		<device identifier="CFT006" profile="1_88"><service name="values"/></device>
+		<device identifier="CFT007" profile="1_89"><service name="values"/></device>
+		<device identifier="CFT008" profile="1_90"><service name="values"/></device>
+		<device identifier="CFT009" profile="1_91"><service name="values"/></device>
+		<device identifier="CFT010" profile="1_92"><service name="values"/></device>
+		<device identifier="CFT011" profile="1_93"><service name="values"/></device>
+		<device identifier="CFT012" profile="1_94"><service name="values"/></device>
+		<device identifier="CFT013" profile="1_95"><service name="values"/></device>
+		-->
+		<!--<device identifier="CFT014" profile="1_104"><service name="values"/></device>-->
+		<device identifier="CFT015" profile="1_105"><service name="values"/></device>
+		<device identifier="CFT016" profile="1_145"><service name="values"/></device>
+		<!--
+		<device identifier="DFT002" profile="1_96"><service name="values"/></device>
+		<device identifier="DFT003" profile="1_97"><service name="values"/></device>
+		<device identifier="DFT004" profile="1_98"><service name="values"/></device>
+		<device identifier="DFT005" profile="1_99"><service name="values"/></device>
+		<device identifier="DFT006" profile="1_100"><service name="values"/></device>
+		<device identifier="DFT007" profile="1_101"><service name="values"/></device>
+		<device identifier="DFT008" profile="1_102"><service name="values"/></device>
+		<device identifier="DFT009" profile="1_103"><service name="values"/></device>
+		<device identifier="DFT010" profile="1_107"><service name="values"/></device>
+		<device identifier="DFT011" profile="1_106"><service name="values"/></device>
+		<device identifier="DFT012" profile="1_108"><service name="values"/></device>
+		<device identifier="DFT013" profile="1_109"><service name="values"/></device>
+		<device identifier="DFT014" profile="1_110"><service name="values"/></device>
+		<device identifier="DFT015" profile="1_111"><service name="values"/></device>
+		<device identifier="DFT016" profile="1_112"><service name="values"/></device>
+		<device identifier="DFT017" profile="1_113"><service name="values"/></device>
+		<device identifier="DFT018" profile="1_114"><service name="values"/></device>
+		<device identifier="DFT019" profile="1_116"><service name="values"/></device>
+		<device identifier="DFT020" profile="1_115"><service name="values"/></device>
+		<device identifier="DFT021" profile="1_117"><service name="values"/></device>
+		<device identifier="DFT022" profile="1_118"><service name="values"/></device>
+		<device identifier="DFT023" profile="1_119"><service name="values"/></device>
+		<device identifier="DFT024" profile="1_120"><service name="values"/></device>
+		<device identifier="DFT025" profile="1_121"><service name="values"/></device>
+		<device identifier="DFT026" profile="1_122"><service name="values"/></device>
+		<device identifier="DFT027" profile="1_123"><service name="values"/></device>
+		<device identifier="DFT028" profile="1_124"><service name="values"/></device>
+		<device identifier="DFT029" profile="1_125"><service name="values"/></device>
+		<device identifier="DFT030" profile="1_126"><service name="values"/></device>
+		<device identifier="DFT031" profile="1_127"><service name="values"/></device>
+		<device identifier="DFT032" profile="1_128"><service name="values"/></device>
+		<device identifier="DFT033" profile="1_129"><service name="values"/></device>
+		<device identifier="DFT034" profile="1_130"><service name="values"/></device>
+		<device identifier="DFT035" profile="1_131"><service name="values"/></device>
+		<device identifier="DFT036" profile="1_132"><service name="values"/></device>
+		<device identifier="DFT037" profile="1_133"><service name="values"/></device>
+		<device identifier="DFT038" profile="1_134"><service name="values"/></device>
+		<device identifier="DFT039" profile="1_135"><service name="values"/></device>
+		<device identifier="DFT040" profile="1_136"><service name="values"/></device>
+		<device identifier="DFT041" profile="1_137"><service name="values"/></device>
+		<device identifier="DFT042" profile="1_138"><service name="values"/></device>
+		<device identifier="DFT043" profile="1_139"><service name="values"/></device>
+		<device identifier="DFT044" profile="1_140"><service name="values"/></device>
+		<device identifier="DFT045" profile="1_141"><service name="values"/></device>
+		<device identifier="DFT046" profile="1_142"><service name="values"/></device>
+		-->
+		<device identifier="DFT047" profile="1_143"><service name="values"/></device>
+		<device identifier="DFT048" profile="1_144"><service name="values"/></device>
+		<!--<device identifier="EFT002" profile="1_104"><service name="values"/></device>-->
+		<!--
+		<device identifier="EFT003" profile="1_146"><service name="values"/></device>
+		<device identifier="EFT004" profile="1_147"><service name="values"/></device>
+		<device identifier="EFT005" profile="1_148"><service name="values"/></device>
+		<device identifier="EFT006" profile="1_149"><service name="values"/></device>
+		<device identifier="EFT007" profile="1_150"><service name="values"/></device>
+		<device identifier="EFT008" profile="1_151"><service name="values"/></device>
+		<device identifier="EFT009" profile="1_152"><service name="values"/></device>
+		<device identifier="EFT010" profile="1_153"><service name="values"/></device>
+		<device identifier="EFT011" profile="1_154"><service name="values"/></device>
+		<device identifier="EFT012" profile="1_155"><service name="values"/></device>
+		<device identifier="EFT013" profile="1_156"><service name="values"/></device>
+		<device identifier="EFT014" profile="1_157"><service name="values"/></device>
+		<device identifier="EFT015" profile="1_158"><service name="values"/></device>
+		<device identifier="EFT016" profile="1_159"><service name="values"/></device>
+		<device identifier="EFT017" profile="1_160"><service name="values"/></device>
+		<device identifier="EFT018" profile="1_161"><service name="values"/></device>
+		<device identifier="EFT019" profile="1_162"><service name="values"/></device>
+		<device identifier="EFT020" profile="1_163"><service name="values"/></device>
+		-->
+		<device identifier="EFT021" profile="1_164"><service name="values"/></device>
+		<device identifier="EFT022" profile="1_165"><service name="values"/></device>	
+		<device identifier="TFV001" profile="1_188"><service name="values"/></device>	
+	</devices>
+
+</resourceInfos>

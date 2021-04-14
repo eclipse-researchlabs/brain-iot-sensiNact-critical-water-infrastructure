@@ -1,0 +1,9 @@
+resource dft001_anomaly = [local/DFT001/values/anomaly]
+resource efv010_open = [local/EFV010/values/open]
+resource cfv006_open = [local/CFV006/values/open]
+
+on dft001_anomaly.subscribe()
+
+if dft001_anomaly.get() == true do
+	efv010_open.act(50), cfv006_open.act(50),dft001_anomaly.set("value",false)
+end if

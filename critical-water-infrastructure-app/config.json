@@ -1,0 +1,11 @@
+{
+	":configurator:resource-version" : 1,
+	":configurator:symbolic-name": "org.eclipse.sensinact.brainiot.medusa.sensinact-medusa-app",
+	":configurator:version": "1.0-SNAPSHOT",
+
+	"sna.sica.bridge.SicaConnectionConfig" : {
+		"host":"https://medusa.tecdesoft.es",
+		"user":"kentyou",
+		"password":"K3nTy0U!"	
+	}
+}

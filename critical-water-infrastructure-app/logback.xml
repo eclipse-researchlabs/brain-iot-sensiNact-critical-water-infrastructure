@@ -1,0 +1,20 @@
+<configuration>
+
+    <!-- console append -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%.15thread] %-5level %logger{36}:%line - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- log all Bundle events -->
+    <logger name="Events.Bundle" level="TRACE"/>
+
+    <!-- log DEBUG from any log API using a logger name starting with `fr.cea` -->
+    <logger name="fr.cea" level="DEBUG"/>
+
+    <root level="DEBUG">
+        <appender-ref ref="STDOUT" />
+    </root>
+    
+</configuration>
