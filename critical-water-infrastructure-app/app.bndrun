@@ -15,6 +15,7 @@ index: target/index.xml;name="app"
 	bnd.identity;id='org.apache.felix.configadmin',\
 	bnd.identity;id='org.apache.felix.configurator',\
 	bnd.identity;id='com.paremus.brain.iot.eventing.impl',\
+	bnd.identity;id='org.osgi.service.component',\
     bnd.identity;id='org.eclipse.sensinact.brainiot.sensinact-gateway',\
 	bnd.identity;id='org.eclipse.sensinact.brainiot.sica.sica',\
     bnd.identity;id='org.eclipse.sensinact.brainiot.infrastructure.sica-extended',\
