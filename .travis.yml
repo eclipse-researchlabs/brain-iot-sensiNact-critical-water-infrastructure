@@ -4,7 +4,7 @@ sudo: true
 
 env:
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
-  MAVEN_CLI_OPTS: "'-s .m2/settings.xml -B'"
+  MAVEN_CLI_OPTS: "'-s .m2/settings.xml -B -U'"
   MAVEN_DEPLOY_OPTS: "'-DaltReleaseDeploymentRepository=brain-iot-releases::default::https://nexus.repository-pert.ismb.it/repository/maven-releases -DaltSnapshotDeploymentRepository=brain-iot-snapshots::default::https://nexus.repository-pert.ismb.it/repository/maven-snapshots'"
   
 # Cache downloaded dependencies and plugins between builds.
